@@ -1,19 +1,48 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import HomeBookTexts from '../../Organisms/HomeBookTexts';
 import MenuHome from '../../Organisms/MenuHome';
-
+import InfiniteScroll from 'react-infinite-scroller';
 import { Container, Content } from './styles';
 
-function TemplateHomePage({data, data1, onClick}) { 
+function TemplateHomePage({ data, data1, search }) { 
+  let [count1, setCount1] = useState(6)
+  let [count2, setCount2] = useState(6)
+  let [content, setContent] = useState(true)
+  let [filteredData, setFilteredData] = useState(data1)
 
-  console.log(data1);
+  function loadFunc(){
+  if(count1 < data.length){
+    setCount1(count1+1)
+  }
+  if(count2 < data1.length){
+    setCount2(count2+1)
+  }
+}
 
-  return (
+const filtered =  data1.filter(item => {
+  let lowerTitle = item.volumeInfo.title.toLowerCase()
+  if(lowerTitle.includes(search))
+     return lowerTitle.includes(search.toLowerCase())
+})
+   
+useEffect(() => {
+  console.log(search)
+  console.log(filtered)
+}, [search])
+
+return (
   <> 
-  
-  <Container>
+    <Container>
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={loadFunc}
+        hasMore={content}
+        loader={<div className="loader" key={0}></div>}
+        >
+    
     <Content>
-    {data1.map((item, i) => {
+
+    {filtered.slice(0,count2).map((item, i) => {
       let thumbnail = '/bookcover.jpg';
       let author = 'John Doe';
       let title = 'Original Book';
@@ -46,7 +75,7 @@ function TemplateHomePage({data, data1, onClick}) {
         </>
       )
     })}
-    {data.map((item, i) => {
+    {data.slice(0,count1).map((item, i) => {
       let thumbnail = '/bookcover.jpg'; 
       let author = 'John Doe';
       let title = 'Original Book';
@@ -75,11 +104,14 @@ function TemplateHomePage({data, data1, onClick}) {
       
       return(
         <>
+        
         <HomeBookTexts title={title} author={author} img={thumbnail} link={id}/>
+        
         </>
       )
     })}
     </Content>
+  </InfiniteScroll>
   </Container> 
   <MenuHome />
   </>

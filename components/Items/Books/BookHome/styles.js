@@ -10,4 +10,9 @@ export const Image = styled.div`
   border-radius: 5px;
   box-shadow: 0 0 0.1em rgba(49, 49, 49, 0.2);
   cursor: pointer;
+  @media only screen and (min-width: 1068px){
+    height: 153px;
+    width: 105px;
+    margin-bottom: 5px;
+  }
 `;

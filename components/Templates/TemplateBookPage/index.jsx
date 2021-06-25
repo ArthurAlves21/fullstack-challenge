@@ -7,8 +7,6 @@ import MenuBook from '../../Organisms/MenuBook';
 import { Container } from './styles';
 
 function TemplateBookPage(props) {
-
-  console.log(props);
   return (
     <>
     <Container>
@@ -20,4 +18,4 @@ function TemplateBookPage(props) {
   ); 
 }
 
-export default TemplateBookPage;
+export default TemplateBookPage; 

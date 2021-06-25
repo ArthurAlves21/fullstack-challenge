@@ -5,12 +5,14 @@ import Link from 'next/link';
 
 function MenuButtonBook(props) {
   return (
-    <Link href={props.link}><Container>
+    <Link href={props.link}>
+      <Container border={props.border}>
       <InnerContent>
-      <Icon id="icon">{props.icon}</Icon>
-      <Text id="text">{props.text}</Text> 
+      <Icon>{props.icon}</Icon>
+      <Text>{props.text}</Text> 
       </InnerContent>
-    </Container></Link>
+    </Container>
+    </Link>
   );;
 }
 

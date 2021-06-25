@@ -8,7 +8,7 @@ export const Input = styled.input`
   border: 0px;
   width: 98%;
   padding: 15px;
-  padding-left: 25px;
+  padding-left: 31.33px;
   placeholder: "Search book";
   font-size: 18px;
   line-height: 18px;
@@ -30,4 +30,5 @@ export const Form = styled.div`
   width: 90%;
   margin: auto;
   background-color: #fff;
+  padding-left: 20.33px;
 `;

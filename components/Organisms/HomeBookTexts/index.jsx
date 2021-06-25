@@ -17,6 +17,6 @@ function HomeBookTexts(props) {
     </Container> 
     </>
   ); 
-}
+} 
 
 export default HomeBookTexts; 

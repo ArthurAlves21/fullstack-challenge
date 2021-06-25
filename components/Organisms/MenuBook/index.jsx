@@ -30,9 +30,9 @@ const [selected, setSelected] = useState({home: false, book: false, profile: fal
   return (
     <>
     <Container>
-      <MenuButtonBook icon={book} text={'Read'} link={props.previewLink} IsSelected={selected.home}/>
-      <MenuButtonBook icon={phone} text={'Listen'} link={props.canonicalVolume} IsSelected={selected.book} />
-      <MenuButtonBook icon={share} text={'Share'} link={'/'} IsSelected={selected.profile}/>
+      <MenuButtonBook border={false} icon={book} text={'Read'} link={'/'} IsSelected={selected.home}/>
+      <MenuButtonBook border={true}  icon={phone} text={'Listen'} link={'/'} IsSelected={selected.book} />
+      <MenuButtonBook border={false} icon={share} text={'Share'} link={'/'} IsSelected={selected.profile}/>
     </Container>
     </>
   );

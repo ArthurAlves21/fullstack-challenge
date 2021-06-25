@@ -15,6 +15,12 @@ export const Container = styled.div`
   border-radius: 2px;
   right: 5%;
   margin: auto;
+  @media only screen and (min-width: 1068px){
+    width: 70%;
+    right: 15%;
+    left: 15%;
+    margin: auto;
+ }
 `
 
 export const Book = styled(BookOpen)`

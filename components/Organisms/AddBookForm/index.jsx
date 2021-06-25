@@ -5,7 +5,7 @@ import InputImage from '../../Items/Forms/InputImage';
 import ButtonForm from '../../Items/Buttons/ButtonForm';
 import TextDescription from '../../Items/Text/TextDescription';
 import { Container, Form, Load } from './styles';
-import { sendToMongo } from '../../Items/Forms/functions/sendToMongo';
+import { sendToMongo } from '../../Items/functions/sendToMongo';
 import Spinner from '../../Items/Spinner'
 import axios from 'axios';
 import { useRouter } from 'next/router'
@@ -22,19 +22,15 @@ function AddBookForm() {
 
   function handleTitle(e){
     setTitle(e)
-    console.log(title)
   }
   function handleSubtitle(e){
     setSubtitle(e)
-    console.log(subtitle)
   }
   function handleAuthor(e){
     setAuthor(e)
-    console.log(author)
   }
   function handleDescription(e){
     setDescription(e)
-    console.log(description)
   }
   
   async function handleFile(e){

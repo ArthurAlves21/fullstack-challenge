@@ -6,7 +6,6 @@ import axios from 'axios';
 import Head from 'next/head';
 
 export function Book({data}) {
-
 if(!data){
 
   let thumbnail = '/bookcover.jpg';
@@ -24,8 +23,6 @@ if(!data){
     let description = 'this book is a book';
     let author = 'John Doe';
     let subtitle = '';
-    let canonicalVolume = '';
-    let previewLink = '';
     try{
       thumbnail = data.volumeInfo.imageLinks.thumbnail
     }catch(e){
@@ -51,16 +48,6 @@ if(!data){
     }catch(e){
       subtitle = '';
     }
-    try{
-      canonicalVolume = data.volumeInfo.canonicalVolumeLink
-    }catch(e){
-      canonicalVolume = '';
-    }
-    try{
-      previewLink = data.volumeInfo.previewLink
-    }catch(e){
-      previewLink = '';
-    }
       return (
         <>
         <Head>
@@ -73,7 +60,7 @@ if(!data){
           <meta property="og:image:height" content="600"></meta>
           <meta property="og:type" content="website"></meta>
         </Head>
-        <TemplateBookPage title={title} subtitle={subtitle} description={description} thumbnail={thumbnail} author={author} previewLink={canonicalVolume} canonicalVolume={previewLink}/>
+        <TemplateBookPage title={title} subtitle={subtitle} description={description} thumbnail={thumbnail} author={author} />
         </>
       )
     
@@ -87,10 +74,10 @@ Book.getInitialProps = async ({ query }) => {
     const {id} = query;
 
     if(id.length > 14){
-      const res = await fetch(`https://foton-bookfinder.vercel.app/api/${id}`)
+      const res = await fetch(`https://foton-book-drab.vercel.app/api/${id}`)
       const json = await res.json()
       return{
-        data: json
+        data: json.items[0]
       }
     }
     if(id.length < 13){

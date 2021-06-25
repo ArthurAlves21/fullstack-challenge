@@ -4,6 +4,10 @@ export const Container = styled.div`
   height: 40vh;
   min-height: 310px;
   width: 100%;
+  @media only screen and (min-width: 1068px){
+      text-align: center;
+      margin: auto;
+    }
 `;
 
 export const Background = styled.div`
@@ -20,5 +24,10 @@ border-radius: 0px 0px 30% 0px;
 img{
   background-color: transparent;
 }
+@media only screen and (min-width: 1068px){
+  text-align: center;
+  margin: auto;
+}
+
 `
 

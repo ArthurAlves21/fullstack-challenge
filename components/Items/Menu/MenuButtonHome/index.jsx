@@ -5,8 +5,6 @@ import Link from 'next/link';
 
 function MenuButtonHome(props) {
 
-  console.log(props);
-
   return (
     <Link href={props.link}><Container>
       <Icon selected={props.IsSelected}>{props.icon}</Icon>

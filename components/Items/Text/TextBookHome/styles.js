@@ -3,6 +3,9 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 90%;
   margin: auto;
+  @media only screen and (min-width: 1068px){
+    text-align: center;
+  }
 `;
  
 export const Title = styled.span`
