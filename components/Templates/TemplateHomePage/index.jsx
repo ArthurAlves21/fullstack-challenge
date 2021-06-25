@@ -47,7 +47,7 @@ return (
       let author = 'John Doe';
       let title = 'Original Book';
       let id = 'wJ7ijwEACAAJ';
-      
+       
       try{
         thumbnail = item.volumeInfo.imageLinks.thumbnail;
       }catch(e){
