@@ -1,17 +1,20 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 import { Container, Title, Subtitle, Author } from './styles';
+import { BookContext } from '../../../../Context/BookContext'
 
-function TextBookTitle(props) {
+function TextBookTitle() {
+  const {title, subtitle, author} = useContext(BookContext)
+
   let dots = '';
-  if(props.subtitle){
+  if(subtitle){
     dots = ': '
   }
   return (
     <>
     <Container>
-      <Title>{props.title + dots } <Subtitle>{props.subtitle}</Subtitle></Title>
-      <Author>{props.author}</Author>
+      <Title>{title + dots } <Subtitle>{subtitle}</Subtitle></Title>
+      <Author>{author}</Author>
     </Container>
     </>
   );

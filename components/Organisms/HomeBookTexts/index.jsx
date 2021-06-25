@@ -1,19 +1,18 @@
-import React, {useEffect} from 'react';
+import React, {useContext} from 'react';
 import BookHome from '../../Items/Books/BookHome';
 import TextBookHome from '../../Items/Text/TextBookHome';
-import Link from 'next/link';
-
 import { Container } from './styles';
+import {GetBookTexts} from '../../../Context/GetBookTexts'
 
-function HomeBookTexts(props) {
-
+function HomeBookTexts() {
+  const {id} = useContext(GetBookTexts)
   return (
     <>
     <Container>
-    <a href={`/`+props.link}>
-    <BookHome img={props.img} alt={props.title}/>
+    <a href={`/`+id}>
+    <BookHome/>
     </a>
-    <TextBookHome title={props.title} author={props.author}/>
+    <TextBookHome/>
     </Container> 
     </>
   ); 

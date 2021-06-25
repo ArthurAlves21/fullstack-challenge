@@ -6,13 +6,13 @@ import TextBookDescription from '../../Items/Text/TextBookDescription';
 import {Container} from './styles';
 
 
-function BookPageTexts(props) {
+function BookPageTexts() {
 
   return (
     <>
       <Container>
-        <TextBookTitle title={props.title} author={props.author} subtitle={props.subtitle}/>
-        <TextBookDescription description={props.description} /> 
+        <TextBookTitle/>
+        <TextBookDescription /> 
       </Container> 
     </>
   );

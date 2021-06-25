@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import TemplateBookPage from '../components/Templates/TemplateBookPage';
 import TemplateError from '../components/Templates/TemplateError';
 import axios from 'axios';
+import {BookContext} from '../Context/BookContext'
 
 import Head from 'next/head';
 
@@ -15,7 +16,21 @@ if(!data){
   let subtitle = '';
 
   return(
+    <>
+    <Head>
+          <title>Foton {title}</title>
+          <meta name="description" content={description} ></meta>
+          <meta property="og:title" content={title} ></meta>
+          <meta property="og:description" content={description}></meta>
+          <meta property="og:image" content={thumbnail}></meta>
+          <meta property="og:image:width" content="800"></meta>
+          <meta property="og:image:height" content="600"></meta>
+          <meta property="og:type" content="website"></meta>
+        </Head>
+    <BookContext.Provider value={{title, subtitle, description, thumbnail, author}}>
     <TemplateBookPage title={title} subtitle={subtitle} description={description} thumbnail={thumbnail} author={author}/>
+    </BookContext.Provider>
+    </>
   )
   }else{
     let title = 'book';
@@ -60,7 +75,9 @@ if(!data){
           <meta property="og:image:height" content="600"></meta>
           <meta property="og:type" content="website"></meta>
         </Head>
+        <BookContext.Provider value={{title, subtitle, description, thumbnail, author}}>
         <TemplateBookPage title={title} subtitle={subtitle} description={description} thumbnail={thumbnail} author={author} />
+        </BookContext.Provider>
         </>
       )
     

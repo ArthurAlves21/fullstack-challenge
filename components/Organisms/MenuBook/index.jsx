@@ -3,7 +3,7 @@ import MenuButtonBook from '../../Items/Menu/MenuButtonBook';
 
 import { Container, Phone, Book, Share  } from './styles';
 
-function MenuHome(props) {
+function MenuHome() {
 const [selected, setSelected] = useState({home: false, book: false, profile: false})
 
 

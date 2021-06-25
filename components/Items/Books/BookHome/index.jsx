@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
-import { Container, Image } from './styles';
+import { Image } from './styles';
+import {GetBookTexts} from '../../../../Context/GetBookTexts'
 
-function BookHome(props) {
+
+function BookHome() {
+  const {thumbnail, title} = useContext(GetBookTexts)
   return (
     <>
-      <Image background={props.img} alt={props.title}/>
+      <Image background={thumbnail} alt={title}/>
     </>
   );
 }

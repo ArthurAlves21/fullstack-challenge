@@ -27,6 +27,11 @@ volumeInfo:{
     required: true,
     unique: false,
   },
+  user: {
+    type: String,
+    required: false,
+    unique: false,
+  },
 }});
 
 module.exports =

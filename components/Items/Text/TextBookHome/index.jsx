@@ -1,30 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 import { AuthorName, Container, Title } from './styles';
+import {GetBookTexts} from '../../../../Context/GetBookTexts'
+import trimTitle from '../../functions/trimTitle';
+import trimAuthor from '../../functions/trimAuthor';
 
-function trimTitle (title){
-  if(title.length > 14){
-    return title.substring(0, 12)+'...';
-  }else{
-    return title;
-  }
-}
-  function trimAuthor (author){
-    if(author.length > 12){
-      return author.substring(0, 9)+'...';
-    }else{
-      return author;
-    }
- }
 
-function TextBookHome(props) {
-
+function TextBookHome() {
+  const {author, title} = useContext(GetBookTexts)
 
   return (
     <>
       <Container>
-        <Title>{trimTitle(props.title)}</Title>
-        <AuthorName>by {trimAuthor(props.author)}</AuthorName>
+        <Title>{trimTitle(title)}</Title>
+        <AuthorName>by {trimAuthor(author)}</AuthorName>
       </Container>
     </>
   );

@@ -1,9 +1,12 @@
-import React, {useMemo, useState} from 'react';
+import React, {useMemo, useContext} from 'react';
 import {useDropzone} from 'react-dropzone';
 import { Container, Images } from './styles';
 import { baseStyle, activeStyle, acceptStyle, rejectStyle} from '../../Forms/InputImage/dropStyles'
+import { AddBookContext } from '../../../../Context/AddBookContext';
 
-function InputImage({handleChange, files}) {
+function InputImage({handleChange}) {
+  const{file} = useContext(AddBookContext)
+
   const {
     getRootProps,
     getInputProps,
@@ -35,7 +38,7 @@ function InputImage({handleChange, files}) {
       </div>
       <aside>
         <h4 style={{marginTop:"20px"}}>Cover</h4>
-        <ul style={{listStyle:"none"}}><li><Images>{files ? <img src={files} /> :  null}</Images></li></ul>
+        <ul style={{listStyle:"none"}}><li><Images>{file ? <img src={file} /> :  null}</Images></li></ul>
       </aside>
     </div>
     </Container>

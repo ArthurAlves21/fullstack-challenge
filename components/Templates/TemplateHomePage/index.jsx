@@ -1,14 +1,18 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import HomeBookTexts from '../../Organisms/HomeBookTexts';
 import MenuHome from '../../Organisms/MenuHome';
 import InfiniteScroll from 'react-infinite-scroller';
 import { Container, Content } from './styles';
+import { SearchContext } from '../../../Context/SearchContext'
+import { GetBookTexts } from '../../../Context/GetBookTexts';
 
-function TemplateHomePage({ data, data1, search }) { 
+function TemplateHomePage() { 
+
   let [count1, setCount1] = useState(6)
   let [count2, setCount2] = useState(6)
   let [content, setContent] = useState(true)
-  let [filteredData, setFilteredData] = useState(data1)
+
+  const {search, data, data1} = useContext(SearchContext)
 
   function loadFunc(){
   if(count1 < data.length){
@@ -21,8 +25,11 @@ function TemplateHomePage({ data, data1, search }) {
 
 const filtered =  data1.filter(item => {
   let lowerTitle = item.volumeInfo.title.toLowerCase()
-  if(lowerTitle.includes(search))
-     return lowerTitle.includes(search.toLowerCase())
+  if(search){
+    return lowerTitle.includes(search.toLowerCase())
+  }else{
+    return lowerTitle == lowerTitle
+  }
 })
    
 useEffect(() => {
@@ -47,7 +54,7 @@ return (
       let author = 'John Doe';
       let title = 'Original Book';
       let id = 'wJ7ijwEACAAJ';
-       
+        
       try{
         thumbnail = item.volumeInfo.imageLinks.thumbnail;
       }catch(e){
@@ -71,7 +78,9 @@ return (
       
       return(
         <>
-        <HomeBookTexts title={title} author={author} img={thumbnail} link={id}/>
+        <GetBookTexts.Provider value={{title, author, thumbnail, id}}>
+        <HomeBookTexts/>
+        </GetBookTexts.Provider>
         </>
       )
     })}
@@ -104,8 +113,9 @@ return (
       
       return(
         <>
-        
-        <HomeBookTexts title={title} author={author} img={thumbnail} link={id}/>
+        <GetBookTexts.Provider value={{title, author, thumbnail, id}}>
+        <HomeBookTexts/>
+        </GetBookTexts.Provider>
         
         </>
       )

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import InputNormal from '../../Items/Forms/InputNormal';
 import InputBig from '../../Items/Forms/InputBig';
 import InputImage from '../../Items/Forms/InputImage';
@@ -9,8 +9,11 @@ import { sendToMongo } from '../../Items/functions/sendToMongo';
 import Spinner from '../../Items/Spinner'
 import axios from 'axios';
 import { useRouter } from 'next/router'
+import { AddBookContext } from '../../../Context/AddBookContext'
+import { AuthContext } from '../../../Context/AuthContext'
 
 function AddBookForm() {
+  const {user} = useContext(AuthContext)
   const router = useRouter();
   const [title, setTitle] = useState("")
   const [subtitle, setSubtitle] = useState("")
@@ -49,7 +52,8 @@ function AddBookForm() {
 			"subtitle":subtitle,
 			"authors":[author],
 			"imageLinks":{"thumbnail": file},
-			"description":description
+			"description":description,
+      "user": user
 		}
    }).then((response) => router.push('/'))
   }catch(e){
@@ -65,13 +69,15 @@ function AddBookForm() {
       <TextDescription description={'Add a new book'}/>
       <Form onSubmit={handleSubmit}> 
       <InputNormal title={'Name'} required={true}  name={'title'} handleChange={handleTitle}/>
-      <InputNormal title={'Subtitle'} required={false}  name={'subtitle'} handleChange={handleSubtitle}/> 
+      <InputNormal title={'Subtitle'} required={false} name={'subtitle'} handleChange={handleSubtitle}/> 
       <InputNormal title={'Author'} required={true}  name={'author'} handleChange={handleAuthor}/>
       <InputBig    title={'Description'} required={true} name={'desc'} handleChange={handleDescription} />
       {load ? <Load><Spinner style={{margin:"auto"}} /></Load> : 
       <>
-      <InputImage  title={'Insert Image'} required={true} handleChange={handleFile} files={file}/>
-      <ButtonForm  button={'Add new book'}/>
+      <AddBookContext.Provider value={{handleFile, file}}>
+      <InputImage title={'Insert Image'} required={true} handleChange={handleFile}/>
+      <ButtonForm button={'Add new book'}/>
+      </AddBookContext.Provider>
       </>
       }
       </Form>
